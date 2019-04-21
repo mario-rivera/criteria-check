@@ -11,7 +11,8 @@
         "symfony/framework-bundle": "4.2.*",
         "symfony/translation": "4.2.*",
         "symfony/validator": "4.2.*",
-        "symfony/yaml": "4.2.*"
+        "symfony/yaml": "4.2.*",
+        "zircote/swagger-php": "^3.0"
     },
     "config": {
         "preferred-install": {
