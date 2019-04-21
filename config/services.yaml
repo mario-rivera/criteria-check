@@ -5,6 +5,7 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
+    docs_url: '%env(DOCS_URL)%'
 
 services:
     # default configuration for services in *this* file
@@ -26,3 +27,15 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    Umbra\Symfony\Http\Response\ExceptionResponseBuilderInterface: 
+        class: Umbra\Symfony\Http\Response\ExceptionResponseBuilder
+    
+    Umbra\Symfony\Http\Request\JsonExtractorInterface:
+        class: Umbra\Symfony\Http\Request\JsonExtractor
+    
+    Umbra\Symfony\Http\Authorization\TokenExtractorInterface:
+        class: Umbra\Symfony\Http\Authorization\TokenExtractor
+    Umbra\Symfony\Http\Authorization\TokenValidatorInterface:
+        class: Umbra\Symfony\Http\Authorization\TokenValidator
+    Umbra\Symfony\Http\Authorization\AuthenticatedControllerFilterInterface:
+        class: Umbra\Symfony\Http\Authorization\AuthenticatedControllerFilter
