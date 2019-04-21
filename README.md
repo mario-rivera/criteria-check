@@ -22,6 +22,11 @@ run --rm --no-deps --user $(id -u):$(id -g) \
 composer
 ```
 
+## Run unit tests
+```bash
+docker-compose run --rm webserver bin/phpunit
+```
+
 ## Overloading Xdebug configuration
 
 ```bash
