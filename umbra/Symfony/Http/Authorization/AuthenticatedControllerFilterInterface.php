@@ -1,7 +1,8 @@
 <?php
 namespace Umbra\Symfony\Http\Authorization;
 
-use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
+use Symfony\Component\HttpKernel\Event\ControllerEvent;
+
 use Umbra\Symfony\Exception\AccessDeniedHttpException;
 
 interface AuthenticatedControllerFilterInterface
@@ -9,5 +10,5 @@ interface AuthenticatedControllerFilterInterface
     /**
      * @throws AccessDeniedHttpException
      */
-    public function filter(FilterControllerEvent $event);
+    public function filter(ControllerEvent $event);
 }

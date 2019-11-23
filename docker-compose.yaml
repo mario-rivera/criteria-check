@@ -1,26 +1,29 @@
 version: '3.7'
 
 services:
-  webserver:
-    image: mariort/php-nginx:1.0
-    container_name: ${WEBSERVER_CONTAINER_NAME}
+  web:
+    image: mariort/php-nginx:3.0
+    container_name: symfonyapi
     volumes:
       - .:/www
     ports:
       - "8080:80"
+    environment: 
+      - XDEBUG_CONFIG
     networks: 
       - default
+    command: sh /www/docker/shell/webserver.sh
       
   swaggerui:
     image: swaggerapi/swagger-ui:v3.22.1
-    container_name: ${WEBSERVER_CONTAINER_NAME}_docs
+    container_name: symfonyapi_docs
     volumes:
       - ./swagger/yaml:/code
     ports:
       - "8081:8080"
     environment:
-      SWAGGER_JSON: /code/${SWAGGER_FILENAME}
+      SWAGGER_JSON: /code/openapi.yaml
 
 networks:
   default:
-    name: ${DOCKER_DEFAULT_NETWORK}
+    name: symfony/umbra

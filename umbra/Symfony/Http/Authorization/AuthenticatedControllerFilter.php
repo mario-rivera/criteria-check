@@ -1,7 +1,7 @@
 <?php
 namespace Umbra\Symfony\Http\Authorization;
 
-use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
+use Symfony\Component\HttpKernel\Event\ControllerEvent;
 
 use Umbra\Symfony\Controller\TokenAuthenticatedInterface;
 use Umbra\Symfony\Http\Authorization\TokenExtractorInterface;
@@ -32,7 +32,7 @@ class AuthenticatedControllerFilter implements AuthenticatedControllerFilterInte
     /**
      * @throws AccessDeniedHttpException
      */
-    public function filter(FilterControllerEvent $event)
+    public function filter(ControllerEvent $event)
     {
         if ($this->needsAuthorization($event->getController())) {
             $token = $this->tokenExtractor->getTokenFromHeaders($event->getRequest()->headers);

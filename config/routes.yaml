@@ -2,5 +2,5 @@ homepage:
     path: /
     controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::urlRedirectAction
     defaults:
-        path: '%docs_url%'
+        path: /v1/
         permanent: false # postman bugs with this setting being true

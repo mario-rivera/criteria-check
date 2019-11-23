@@ -1,7 +1,7 @@
 ## Starting the application
 
 ```bash
-$ docker-compose up -d
+$ docker-compose up -d web
 ```
 
 ## Generate Swagger Documentation (YAML)

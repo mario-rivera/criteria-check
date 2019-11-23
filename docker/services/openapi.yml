@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+  docs:
+    image: swaggerapi/swagger-ui:v3.22.1
+    container_name: ${WEBSERVER_CONTAINER_NAME}_docs
+    volumes:
+      - ./openapi/yaml:/code
+    ports:
+      - "8080:8080"
+    environment:
+      SWAGGER_JSON: /code/openapi.yml
+      
+  docgen:
+    image: php:7.3-cli-alpine
+    working_dir: /code
+    volumes:
+      - .:/code
+    environment:
+      SWAGGER_TARGET: /code/openapi/yaml/openapi.yml
+      SWAGGER_PATH: /code/openapi/annotations /code/src/Controller
+    command: sh /code/docker/shell/docs.sh
+    
+networks:
+  default:
+    external:
+      name: bridge

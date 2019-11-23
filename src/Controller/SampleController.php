@@ -20,6 +20,6 @@ class SampleController
      */
     public function get()
     {
-        return new JsonResponse(null, JsonResponse::HTTP_NO_CONTENT);
+        return new JsonResponse('OK', JsonResponse::HTTP_OK);
     }
 }
