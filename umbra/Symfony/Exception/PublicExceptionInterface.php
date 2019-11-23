@@ -1,5 +1,5 @@
 <?php
-namespace Umbra\Exception;
+namespace Umbra\Symfony\Exception;
 
 interface PublicExceptionInterface
 {

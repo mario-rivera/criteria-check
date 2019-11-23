@@ -4,26 +4,24 @@ namespace Umbra\Symfony\Http\Authorization;
 use Symfony\Component\HttpKernel\Event\ControllerEvent;
 
 use Umbra\Symfony\Controller\TokenAuthenticatedInterface;
-use Umbra\Symfony\Http\Authorization\TokenExtractorInterface;
-use Umbra\Symfony\Http\Authorization\TokenValidatorInterface;
 
 use Umbra\Symfony\Exception\AccessDeniedHttpException;
 
-class AuthenticatedControllerFilter implements AuthenticatedControllerFilterInterface
+class AuthenticatedControllerFilter
 {
     /**
-     * @var TokenExtractorInterface
+     * @var TokenExtractor
      */
     private $tokenExtractor;
 
     /**
-     * @var TokenValidatorInterface
+     * @var TokenValidator
      */
     private $tokenValidator;
 
     public function __construct(
-        TokenExtractorInterface $tokenExtractor,
-        TokenValidatorInterface $tokenValidator
+        TokenExtractor $tokenExtractor,
+        TokenValidator $tokenValidator
     ) {
         $this->tokenExtractor = $tokenExtractor;
         $this->tokenValidator = $tokenValidator;

@@ -1,8 +1,7 @@
 <?php
 namespace Umbra\Symfony\Exception;
 
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Umbra\Exception\PublicExceptionInterface;
+use Umbra\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class EntityNotFoundException extends NotFoundHttpException implements
     PublicExceptionInterface

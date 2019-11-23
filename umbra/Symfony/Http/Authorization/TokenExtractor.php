@@ -3,7 +3,7 @@ namespace Umbra\Symfony\Http\Authorization;
 
 use Symfony\Component\HttpFoundation\HeaderBag;
 
-class TokenExtractor implements TokenExtractorInterface
+class TokenExtractor
 {
     protected static $headerName = 'Authorization';
 

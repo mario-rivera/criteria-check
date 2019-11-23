@@ -7,7 +7,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 
-use Umbra\Symfony\Http\Response\ExceptionResponseBuilderInterface;
+use Umbra\Symfony\ExceptionHandler\ExceptionResponseBuilder;
 
 class KernelExceptions implements EventSubscriberInterface
 {
@@ -17,13 +17,13 @@ class KernelExceptions implements EventSubscriberInterface
     private $kernel;
     
     /**
-     * @var ExceptionResponseBuilderInterface
+     * @var ExceptionResponseBuilder
      */
     private $responseBuilder;
 
     public function __construct(
         KernelInterface $kernel,
-        ExceptionResponseBuilderInterface $responseBuilder
+        ExceptionResponseBuilder $responseBuilder
     ) {
         $this->kernel = $kernel;
         $this->responseBuilder = $responseBuilder;
@@ -39,9 +39,7 @@ class KernelExceptions implements EventSubscriberInterface
     public function onKernelException(ExceptionEvent $event)
     {
         // You get the exception object from the received event
-        $this->responseBuilder->setException($event->getThrowable());
-        $this->responseBuilder->setDebug($this->kernel->isDebug());
-
-        $event->setResponse($this->responseBuilder->getResponse());
+        $response = $this->responseBuilder->getResponse($event->getThrowable(), $this->kernel->isDebug());
+        $event->setResponse($response);
     }
 }

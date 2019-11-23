@@ -1,5 +1,5 @@
 <?php
-namespace Umbra\Exception;
+namespace Umbra\Symfony\ExceptionHandler\ErrorSchema;
 
 use Exception;
 

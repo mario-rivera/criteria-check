@@ -3,19 +3,18 @@ namespace App\EventSubscriber;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
-use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpKernel\Event\ControllerEvent;
 
-use Umbra\Symfony\Http\Authorization\AuthenticatedControllerFilterInterface;
+use Umbra\Symfony\Http\Authorization\AuthenticatedControllerFilter;
 
 class AuthorizationHeader implements EventSubscriberInterface
 {
     /**
-     * @var AuthenticatedControllerFilterInterface
+     * @var AuthenticatedControllerFilter
      */
     private $controllerFilter;
 
-    public function __construct(AuthenticatedControllerFilterInterface $controllerFilter)
+    public function __construct(AuthenticatedControllerFilter $controllerFilter)
     {
         $this->controllerFilter = $controllerFilter;
     }

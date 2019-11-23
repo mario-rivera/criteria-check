@@ -1,10 +1,10 @@
 <?php
 namespace Umbra\Symfony\Http\Authorization;
 
-class TokenValidator implements TokenValidatorInterface
+class TokenValidator
 {
     public function validate($token): bool
     {
-        return ($token === getenv('APP_SECRET'));
+        return ($token === getenv('AUTH_TOKEN'));
     }
 }

@@ -5,7 +5,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 use Umbra\Symfony\Exception\BadRequestHttpException;
 
-class JsonExtractor implements JsonExtractorInterface
+class JsonExtractor
 {
     /**
      * @throws BadRequestHttpException

@@ -5,12 +5,6 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
 use Symfony\Component\Validator\ConstraintViolationInterface;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Symfony\Component\HttpFoundation\Response;
-
-use Umbra\Exception\MultipleErrorsExceptionInterface;
-use Umbra\Exception\PublicExceptionInterface;
-use Umbra\Exception\ErrorList;
-use Umbra\Exception\ErrorCodes;
-
 use Exception;
 
 class InputValidationException extends Exception implements
@@ -32,7 +26,7 @@ class InputValidationException extends Exception implements
         return $this;
     }
     
-    public function getErrors(): ErrorList
+    public function getErrors(): array
     {
 
         return $this->mapConstraintList();
@@ -50,10 +44,10 @@ class InputValidationException extends Exception implements
 
     protected function mapConstraintList()
     {
-        $map = new ErrorList();
+        $map = [];
         foreach ($this->constraintList as $constraintViolation) {
             $error = $this->formatConstraintViolation($constraintViolation);
-            $map->add($error, ErrorCodes::$inputValidation);
+            $map[] = $error;
         }
 
         return $map;
