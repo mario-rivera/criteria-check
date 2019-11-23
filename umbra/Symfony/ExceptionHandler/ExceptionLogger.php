@@ -3,7 +3,8 @@ namespace Umbra\Symfony\ExceptionHandler;
 
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Psr\Log\LoggerInterface;
-use Monolog\Logger;
+use Psr\Log\LogLevel;
+// use Symfony\Component\HttpKernel\Log\Logger;
 
 use Umbra\Symfony\Exception\MultipleErrorsExceptionInterface;
 
@@ -31,7 +32,7 @@ class ExceptionLogger
 
     public function logException(Throwable $exception)
     {
-        $level = Logger::ERROR;
+        $level = LogLevel::ERROR;
 
         $context = ['trace' => $exception->getTrace()];
         if ($exception instanceof MultipleErrorsExceptionInterface) {
