@@ -2,5 +2,5 @@ homepage:
     path: /
     controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::urlRedirectAction
     defaults:
-        path: /v1/
+        path: /check/
         permanent: false # postman bugs with this setting being true

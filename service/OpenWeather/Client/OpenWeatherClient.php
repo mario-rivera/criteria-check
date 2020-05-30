@@ -10,11 +10,14 @@ use function GuzzleHttp\Psr7\stream_for;
 use function GuzzleHttp\json_encode;
 use function GuzzleHttp\json_decode;
 
-use GuzzleHttp\Exception\BadResponseException;
+use Service\OpenWeather\Result\CityWeather;
+use Service\OpenWeather\Result\CityWeatherResult;
 
 class OpenWeatherClient extends Client implements
     OpenWeatherClientInterface
 {
+    use ClientRequestTrait;
+
     /**
      * @var Uri
      */
@@ -38,10 +41,14 @@ class OpenWeatherClient extends Client implements
     }
 
     /**
-     * @param string $location
-     * @return array
+     * @param string $city
+     * 
+     * @throws Exception\NotFoundException
+     * @throws Exception\ApiException
+     * 
+     * @return CityWeather
      */
-    public function getWeather(string $location): array
+    public function queryCityWeather(string $location): CityWeather
     {
         $url = $this->url->withPath("/data/2.5/weather");
 
@@ -53,7 +60,8 @@ class OpenWeatherClient extends Client implements
         $request = (new Request('GET', $url));
 
         $response = $this->send($request);
+        $responseData = json_decode($response->getBody()->getContents(), true);
 
-        return json_decode($response->getBody()->getContents(), true);
+        return (new CityWeatherResult($responseData));
     }
 }

@@ -46,3 +46,12 @@ services:
         arguments: ['%openweather.api.conf%']
         
     Service\OpenWeather\Client\OpenWeatherClientInterface: '@Service\OpenWeather\Client\OpenWeatherClient'
+
+    # Criteria Manager
+    Service\CriteriaCheck\CityWeather\CriteriaManager:
+        calls:
+            - setCriteria:
+                - ['@Service\CriteriaCheck\CityWeather\Criterion\Naming',
+                '@Service\CriteriaCheck\CityWeather\Criterion\Daytemp',
+                '@Service\CriteriaCheck\CityWeather\Criterion\Rival']
+

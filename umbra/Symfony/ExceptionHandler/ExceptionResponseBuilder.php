@@ -38,9 +38,10 @@ class ExceptionResponseBuilder
 
         if ($exception instanceof PublicExceptionInterface || $debug) {
             $message = $exception->getMessage();
-        }
-        if ($exception instanceof MultipleErrorsExceptionInterface) {
-            $message = $exception->getErrors();
+            
+            if ($exception instanceof MultipleErrorsExceptionInterface) {
+                $message = $exception->getErrors();
+            }
         }
 
         return $message;

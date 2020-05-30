@@ -29,8 +29,6 @@ class ApplicationExceptionHandler
 
         switch ($exception) {
             default:
-                $debug ?: $message = "Something went wrong.";
-                $event->setThrowable(new HttpException(Response::HTTP_INTERNAL_SERVER_ERROR, $message, $exception));
         }
     }
 }

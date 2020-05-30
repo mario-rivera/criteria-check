@@ -1,11 +1,17 @@
 <?php
 namespace Service\OpenWeather\Client;
 
+use Service\OpenWeather\Result\CityWeather;
+
 interface OpenWeatherClientInterface
 {
     /**
-     * @param string $location
-     * @return array
+     * @param string $city
+     * 
+     * @throws Exception\NotFoundException
+     * @throws Exception\ApiException
+     * 
+     * @return CityWeather
      */
-    public function getWeather(string $location): array;
+    public function queryCityWeather(string $location): CityWeather;
 }
