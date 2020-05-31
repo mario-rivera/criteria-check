@@ -1,44 +1,32 @@
 ## Starting the application
 
 ```bash
-$ docker-compose up -d web
+docker-compose up -d webserver
 ```
 
-## Generate Swagger Documentation (YAML)
+## Criteria Endpoint
 
 ```bash
-$ docker-compose -f $(pwd)/docker/services/commands.yaml \
---project-directory $(pwd) \
-run --rm --no-deps --user $(id -u):$(id -g) \
-docs
+curl --location --request GET 'http://localhost/check/?city=paris'
 ```
 
-## Running composer install
-
 ```bash
-$ docker-compose -f $(pwd)/docker/services/commands.yaml \
---project-directory $(pwd) \
-run --rm --no-deps --user $(id -u):$(id -g) \
-composer
+curl --location --request GET 'http://localhost/check/?city=taipei'
 ```
 
-## Run unit tests
+## Running Unit Tests
+
 ```bash
-docker-compose run --rm webserver bin/phpunit
+docker-compose \
+-f $(pwd)/docker/services/php.yml --project-directory $(pwd) \
+run --rm --no-deps \
+phpunit
 ```
 
-## Overloading Xdebug configuration
+### ** I did NOT test all of the classes I created for this test
 
-```bash
-$ docker cp {xdebug.config.ini} {container}:/usr/local/etc/php/conf.d/xdebug.config.ini \
-&& docker restart {container}
-```
+## Criteria Config and Reordering
 
-<!-- ## Run Swagger UI
-
-```bash
-$ docker-compose -f $(pwd)/docker/services/commands.yaml \
---project-directory $(pwd) \
-run -d --service-ports --name swaggerui \
-swaggerui
-``` -->
+- Criteria can be easily configured from config/services.yaml
+- Each criteria is a class implementing WeatherCriterionInterface
+- Criteria can accept logical operators AND and OR

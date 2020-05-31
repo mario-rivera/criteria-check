@@ -52,7 +52,7 @@ class OpenWeatherClient extends Client implements
     {
         $url = $this->url->withPath("/data/2.5/weather");
 
-        $url = $url->withQueryValues($url, [
+        $url = Uri::withQueryValues($url, [
             'appid' => $this->apiToken,
             'q' => $location
         ]);

@@ -88,8 +88,10 @@ class CriteriaResponse implements
 
     public function jsonSerialize()
     {
+        $checkKey = ($this->calculateCheck()) ? 'check' : 'error';
+
         return [
-            'check' => $this->calculateCheck(),
+            $checkKey => true,
             'criteria' => $this->criteria
         ];
     }

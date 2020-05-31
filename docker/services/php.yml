@@ -1,0 +1,33 @@
+version: '3.7'
+
+services:  
+  php:
+    image: php:7.3.11-cli-stretch
+    working_dir: /code
+    volumes:
+      - .:/code
+    networks: 
+      - default
+    command: bash
+
+  # phpunit:
+  #   image: php:7.3.11-cli-stretch
+  #   working_dir: /code
+  #   volumes:
+  #     - .:/code
+  #   networks: 
+  #     - default
+  #   command: vendor/bin/phpunit --bootstrap tests/config/bootstrap.php tests
+
+  phpunit:
+    image: mariort/php-nginx:3.0
+    working_dir: /code
+    volumes:
+      - .:/code
+    networks: 
+      - default
+    command: bin/phpunit
+
+networks:
+  default:
+    name: symfony/umbra

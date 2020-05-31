@@ -3,7 +3,6 @@ version: '3.7'
 services:
   webserver:
     image: mariort/php-nginx:3.0
-    container_name: symfonyapi
     volumes:
       - .:/www
     ports:
@@ -13,16 +12,6 @@ services:
     networks: 
       - default
     command: sh /www/docker/shell/webserver.sh
-      
-  swaggerui:
-    image: swaggerapi/swagger-ui:v3.22.1
-    container_name: symfonyapi_docs
-    volumes:
-      - ./swagger/yaml:/code
-    ports:
-      - "8080:8080"
-    environment:
-      SWAGGER_JSON: /code/openapi.yaml
 
 networks:
   default:
