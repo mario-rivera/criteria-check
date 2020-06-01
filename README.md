@@ -1,3 +1,12 @@
+## Installing the Framework and dependencies
+
+```bash
+docker-compose \
+-f $(pwd)/docker/services/composer.yml --project-directory $(pwd) \
+run --rm --no-deps --user $(id -u):$(id -g) \
+install
+```
+
 ## Starting the application
 
 ```bash
